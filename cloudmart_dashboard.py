@@ -358,20 +358,15 @@ st.markdown("---")
 st.subheader("Task 3.5: Export untagged resources to a new CSV file")
 st.write("**Hint:** Use df[df['Tagged']=='No'].to_csv('untagged.csv')")
 
-# Save to file
-untagged_csv_path = "/Users/winsometang/Downloads/untagged.csv"
-untagged_resources.to_csv(untagged_csv_path, index=False)
-st.success(f"✓ Untagged resources exported to: {untagged_csv_path}")
-
-# Also provide download button in Streamlit
+# Provide download button in Streamlit (works on cloud and local)
 csv_data = untagged_resources.to_csv(index=False)
 st.download_button(
     label="📥 Download Untagged Resources CSV",
     data=csv_data,
     file_name="untagged_resources.csv",
     mime="text/csv",
+    key="download_untagged",
 )
-
 st.info(
     f"Exported {len(untagged_resources)} untagged resources with a total cost of ${total_untagged_cost:,.2f}"
 )
